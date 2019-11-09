@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec44a36356856d9448b75f5bbd29d337, type: 3}
+  m_Name: Rotor III
+  m_EditorClassIdentifier: 
+  turnoverPosition: 21
+  pairings:
+  - char1: 1
+    char2: 2
+  - char1: 2
+    char2: 4
+  - char1: 3
+    char2: 6
+  - char1: 4
+    char2: 8
+  - char1: 5
+    char2: 10
+  - char1: 6
+    char2: 12
+  - char1: 7
+    char2: 3
+  - char1: 8
+    char2: 16
+  - char1: 9
+    char2: 18
+  - char1: 10
+    char2: 20
+  - char1: 11
+    char2: 24
+  - char1: 12
+    char2: 22
+  - char1: 13
+    char2: 26
+  - char1: 14
+    char2: 14
+  - char1: 15
+    char2: 25
+  - char1: 16
+    char2: 5
+  - char1: 17
+    char2: 9
+  - char1: 18
+    char2: 23
+  - char1: 19
+    char2: 7
+  - char1: 20
+    char2: 1
+  - char1: 21
+    char2: 11
+  - char1: 22
+    char2: 13
+  - char1: 23
+    char2: 21
+  - char1: 24
+    char2: 19
+  - char1: 25
+    char2: 17
+  - char1: 26
+    char2: 15

@@ -12,6 +12,8 @@ namespace FallingSloth.Enigma
         
         Chars currentKey = Chars._;
 
+        public RotorSpindle spindle;
+
         void Awake()
         {
             lamps = new Dictionary<Chars, Lamp>();
