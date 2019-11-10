@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -11,15 +12,23 @@ namespace FallingSloth.Enigma
         public Dictionary<Chars, Lamp> lamps;
         
         Chars currentKey = Chars._;
+        Chars currentLamp = Chars._;
 
         public RotorSpindle spindle;
+
+        StringBuilder output = new StringBuilder();
+        public TMPro.TextMeshProUGUI outputField;
 
         void Awake()
         {
             lamps = new Dictionary<Chars, Lamp>();
+            
+            spindle.rotor1.turnoverAction = () => { spindle.rotor2.TurnRotor(); };
+            spindle.rotor2.turnoverAction = () => { spindle.rotor3.TurnRotor(); };
+            spindle.rotor3.turnoverAction = () => { };
         }
 
-        void FixedUpdate()
+        void Update()
         {
             if (currentKey == Chars._)
             {
@@ -27,17 +36,21 @@ namespace FallingSloth.Enigma
                 {
                     if (CharToKey((Chars)i).wasPressedThisFrame)
                     {
-                        lamps[Encode((Chars)i)].TurnOn();
+                        Chars encoded = Encode((Chars)i);
+                        lamps[encoded].TurnOn();
                         currentKey = (Chars)i;
+                        currentLamp = encoded;
+                        output.Append(encoded.ToString());
+                        outputField.text = output.ToString();
                         break;
                     }
                 }
             }
             else
             {
-                if (CharToKey(currentKey).wasReleasedThisFrame)
+                if (!CharToKey(currentKey).isPressed)
                 {
-                    lamps[currentKey].TurnOff();
+                    lamps[currentLamp].TurnOff();
                     currentKey = Chars._;
                 }
             }
@@ -106,8 +119,8 @@ namespace FallingSloth.Enigma
 
         Chars Encode(Chars input)
         {
-            //TODO: Actually encode input character
-            return input;
+            Chars encoded = spindle.Encode(input);
+            return encoded;
         }
     }
 }

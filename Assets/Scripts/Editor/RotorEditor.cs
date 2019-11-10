@@ -9,37 +9,23 @@ namespace FallingSloth.Enigma
     [CustomEditor(typeof(Rotor))]
     public class RotorEditor : Editor
     {
-        ReorderableList list;
-
         void OnEnable()
         {
-            list = new ReorderableList(serializedObject,
-                                       serializedObject.FindProperty("pairings"),
-                                       true, true, true, true);
-            list.drawHeaderCallback = (rect) =>
-            {
-                GUI.Label(rect, "Letter Pairings");
-            };
-            list.elementHeightCallback = (index) =>
-            {
-                return (EditorGUIUtility.singleLineHeight * 2f);
-            };
-            list.drawElementCallback = (rect, index, isActive, isFocused) =>
-            {
-                GUI.Label(new Rect(rect.x, rect.y, rect.width / 3, rect.height), string.Format("Pair {0}", index+1));
-                EditorGUI.PropertyField(new Rect(rect.x + rect.width/3, rect.y, rect.width * 0.666f, rect.height / 2),
-                                        serializedObject.FindProperty("pairings").GetArrayElementAtIndex(index).FindPropertyRelative("char1"));
-                EditorGUI.PropertyField(new Rect(rect.x + rect.width/3, rect.y + rect.height / 2, rect.width * 0.666f, rect.height / 2),
-                                        serializedObject.FindProperty("pairings").GetArrayElementAtIndex(index).FindPropertyRelative("char2"));
-            };
-
+            Rotor t = (Rotor)target;
+            while (t.pairings.Count < 26)
+                t.pairings.Add(Chars._);
+            EditorUtility.SetDirty(t);
         }
 
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
             EditorGUILayout.PropertyField(serializedObject.FindProperty("turnoverPosition"));
-            list.DoLayoutList();
+            for (int i = 0; i < 26; i++)
+            {
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("pairings").GetArrayElementAtIndex(i),
+                                              new GUIContent(string.Format("{0} maps to:", (Chars)(i+1))));
+            }
             serializedObject.ApplyModifiedProperties();
         }
     }

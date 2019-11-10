@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec44a36356856d9448b75f5bbd29d337, type: 3}
-  m_Name: Reflector
+  m_Script: {fileID: 11500000, guid: f9ad663bf5b93d84e8386ccfe8430c6a, type: 3}
+  m_Name: Reflector A
   m_EditorClassIdentifier: 
-  turnoverPosition: 0
   pairings: []
