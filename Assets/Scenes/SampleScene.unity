@@ -10579,6 +10579,7 @@ MonoBehaviour:
     rotor1: {fileID: 11400000, guid: fcb3a1bd68c0c7545b6d95ee73d414cb, type: 2}
     rotor2: {fileID: 11400000, guid: 037af3022ac7ab242a00618449f3442b, type: 2}
     rotor3: {fileID: 11400000, guid: 980e967c44cc3484d95890653f2eae11, type: 2}
+  reflector: {fileID: 11400000, guid: de4bfd922089ce1449b1b0a88d02e1b2, type: 2}
   outputField: {fileID: 614802735}
 --- !u!4 &1376801497
 Transform:

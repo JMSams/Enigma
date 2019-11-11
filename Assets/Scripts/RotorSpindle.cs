@@ -15,8 +15,19 @@ namespace FallingSloth.Enigma
 
         public Chars Encode(Chars input)
         {
-            rotor1.TurnRotor();
-            return rotor3.Encode(rotor2.Encode(rotor1.Encode(input)));
+            return Encode(input, false);
+        }
+        public Chars Encode(Chars input, bool reverse)
+        {
+            if (reverse)
+            {
+                return rotor1.Encode(rotor2.Encode(rotor3.Encode(input, true), true), true);
+            }
+            else
+            {
+                rotor1.TurnRotor();
+                return rotor3.Encode(rotor2.Encode(rotor1.Encode(input)));
+            }
         }
     }
 }

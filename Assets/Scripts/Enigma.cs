@@ -15,6 +15,7 @@ namespace FallingSloth.Enigma
         Chars currentLamp = Chars._;
 
         public RotorSpindle spindle;
+        public Reflector reflector;
 
         StringBuilder output = new StringBuilder();
         public TMPro.TextMeshProUGUI outputField;
@@ -120,6 +121,8 @@ namespace FallingSloth.Enigma
         Chars Encode(Chars input)
         {
             Chars encoded = spindle.Encode(input);
+            encoded = reflector.Reflect(encoded);
+            encoded = spindle.Encode(encoded, true);
             return encoded;
         }
     }

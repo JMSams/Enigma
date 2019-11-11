@@ -12,4 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ad663bf5b93d84e8386ccfe8430c6a, type: 3}
   m_Name: Reflector A
   m_EditorClassIdentifier: 
-  pairings: []
+  pairings:
+  - char1: 1
+    char2: 5
+  - char1: 2
+    char2: 10
+  - char1: 3
+    char2: 13
+  - char1: 4
+    char2: 26
+  - char1: 6
+    char2: 12
+  - char1: 7
+    char2: 25
+  - char1: 8
+    char2: 24
+  - char1: 9
+    char2: 22
+  - char1: 11
+    char2: 23
+  - char1: 14
+    char2: 18
+  - char1: 15
+    char2: 17
+  - char1: 16
+    char2: 21
+  - char1: 19
+    char2: 20
