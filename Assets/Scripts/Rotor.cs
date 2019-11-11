@@ -1,11 +1,19 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace FallingSloth.Enigma
 {
-    [CreateAssetMenu(fileName = "rotor.asset", menuName = "New Rotor", order = 1)]
-    public class Rotor : ScriptableObject
+    public class Rotor
     {
+        public Rotor(RotorSettings settings)
+        {
+            this.position = settings.startPosition;
+            this.settings = settings;
+        }
+
         int _position;
         public int position
         {
@@ -13,12 +21,7 @@ namespace FallingSloth.Enigma
             protected set => _position = value;
         }
 
-        public int turnoverPosition = 17;
-
-        [Range(0, 25)]
-        public int ringSetting = 0;
-
-        public List<Chars> pairings;
+        RotorSettings settings;
 
         public delegate void RotorTurnoverDelegate();
         public RotorTurnoverDelegate turnoverAction;
@@ -27,26 +30,26 @@ namespace FallingSloth.Enigma
         {
             int oldPos = position;
             position = (position + 1) % 26;
-            if (oldPos == turnoverPosition)
+            if (oldPos == settings.turnoverPosition)
                 turnoverAction();
         }
+
         public Chars Encode(Chars input)
         {
             return Encode(input, false);
         }
-
         public Chars Encode(Chars input, bool reverse)
         {
             if (reverse)
             {
-                int i = (int)input - position - ringSetting;
+                int i = (int)input - position - settings.ringSetting;
                 while (i < 0)
                     i += 26;
                 return (Chars)i;
             }
             else
             {
-                return pairings[((int)input + position + ringSetting) % 26];
+                return settings.pairings[((int)input + position + settings.ringSetting) % 26];
             }
         }
     }

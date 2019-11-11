@@ -6,12 +6,12 @@ using UnityEditorInternal;
 
 namespace FallingSloth.Enigma
 {
-    [CustomEditor(typeof(Rotor))]
+    [CustomEditor(typeof(RotorSettings))]
     public class RotorEditor : Editor
     {
         void OnEnable()
         {
-            Rotor t = (Rotor)target;
+            RotorSettings t = (RotorSettings)target;
             while (t.pairings.Count < 26)
                 t.pairings.Add(Chars._);
             EditorUtility.SetDirty(t);
