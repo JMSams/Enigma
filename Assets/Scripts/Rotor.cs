@@ -7,20 +7,33 @@ namespace FallingSloth.Enigma
     public class Rotor
     {
         int[][] chars;
-        int turnoverPoint;
+        public int turnoverPoint { get; protected set; }
         
-        public int position { get; protected set; }
+        public int position { get; set; }
 
         protected Rotor() { }
-
-        public void SetPosition(int position)
-        {
-            this.position = position;
-        }
         
-        public void Encode(int input, bool reverse = false)
+        public int Encode(int input, bool reverse = false)
         {
+            if (reverse)
+            {
+                for (int i = 0; i < 26; i++)
+                {
+                    if (input == chars[i][1])
+                    {
+                        int output = chars[i][0] - position;
+                        while (output < 0) output += 26;
+                        output %= 26;
+                        return output;
+                    }
+                }
 
+                throw new System.Exception("WTF");
+            }
+            else
+            {
+                return chars[(input + position) % 26][1];
+            }
         }
 
         public static Rotor Rotor_I => new Rotor { turnoverPoint = 16, chars = new int[][] { new int[] { 0, 4 }, new int[] { 1, 10 }, new int[] { 2, 12 }, new int[] { 3, 5 }, new int[] { 4, 11 }, new int[] { 5, 6 }, new int[] { 6, 3 }, new int[] { 7, 16 }, new int[] { 8, 21 }, new int[] { 9, 25 }, new int[] { 10, 13 }, new int[] { 11, 19 }, new int[] { 12, 14 }, new int[] { 13, 22 }, new int[] { 14, 24 }, new int[] { 15, 7 }, new int[] { 16, 23 }, new int[] { 17, 20 }, new int[] { 18, 18 }, new int[] { 19, 15 }, new int[] { 20, 0 }, new int[] { 21, 8 }, new int[] { 22, 1 }, new int[] { 23, 17 }, new int[] { 24, 2 }, new int[] { 25, 9 } } };
