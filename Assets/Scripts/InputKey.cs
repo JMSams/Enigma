@@ -18,10 +18,10 @@ namespace FallingSloth.Enigma
             keyText = GetComponentInChildren<TextMeshProUGUI>();
             keyText.text = keyText.text[0].ToString();
 
-            character = Enigma.characters.IndexOf(keyText.text);
+            character = Enigma.chars.IndexOf(keyText.text);
 
             osb = GetComponent<OnScreenButton>();
-            osb.controlPath = string.Format("<Keyboard>/#({0})", Enigma.characters[character]);
+            osb.controlPath = string.Format("<Keyboard>/#({0})", Enigma.chars[character]);
         }
 
 

@@ -9,7 +9,7 @@ namespace FallingSloth.Enigma
 {
     public class Enigma : MonoBehaviour
     {
-        public const string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        public const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         public TextMeshProUGUI rotor1Position, rotor2Position, rotor3Position, outputBox;
 
@@ -51,6 +51,8 @@ namespace FallingSloth.Enigma
             rotor3Position.text = rotor3StartPosition.ToString();
 
             reflector = new Reflector();
+
+            outputBox.text = "";
         }
         
         void Update()
@@ -65,6 +67,7 @@ namespace FallingSloth.Enigma
                         TurnRotors();
                         int encoded = Encode(i);
                         currentLamp = encoded;
+                        outputBox.text += chars[encoded];
                         lamps[currentLamp].isOn = true;
                         break;
                     }
@@ -107,9 +110,9 @@ namespace FallingSloth.Enigma
 
             output = reflector.Encode(output);
 
-            output = rotor3.Encode(output);
-            output = rotor2.Encode(output);
-            output = rotor1.Encode(output);
+            output = rotor3.Encode(output, true);
+            output = rotor2.Encode(output, true);
+            output = rotor1.Encode(output, true);
 
             return output;
         }
